@@ -11,19 +11,29 @@
 				padding: 0;
 				box-sizing: border-box;
 			}
+			
 			html,
 			body {
 				width: 100vw;
 				height: 100vh;
 				overflow: hidden;
 				border: 0 none;
-				background-color: #86909C;
+				background-color: white;
+			}
+			.img_box {
+				position: relative;
+			}
+			.img_box img {
+				border: 0 none;
+				width: 100%;
 			}
 		</style>
 	</head>
 
 	<body>
-		Test Page
+		<div class="img_box">
+			<img src="test.png">
+		</div>
 		<script type="text/javascript">
 			console.log('Test');
 		</script>
