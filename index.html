@@ -20,9 +20,11 @@
 				border: 0 none;
 				background-color: white;
 			}
+			
 			.img_box {
 				position: relative;
 			}
+			
 			.img_box img {
 				border: 0 none;
 				width: 100%;
@@ -32,10 +34,32 @@
 
 	<body>
 		<div class="img_box">
-			<img src="test.png">
+			<img src="./test.png">
+			<div id="timer"></div>
 		</div>
 		<script type="text/javascript">
-			console.log('Test');
+			;
+			(function() {
+				function Format(now, fmt) {
+					const o = {
+						"M+": now.getMonth() + 1, // 月份 
+						"d+": now.getDate(), // 日 
+						"h+": now.getHours(), // 小时 
+						"m+": now.getMinutes(), // 分 
+						"s+": now.getSeconds(), // 秒 
+						"q+": Math.floor((now.getMonth() + 3) / 3), // 季度 
+						"S": now.getMilliseconds() // 毫秒 
+					};
+					if(/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (now.getFullYear() + "").substr(4 - RegExp.$1.length));
+					for(let k in o)
+						if(new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+					return fmt;
+				}
+				const timer = document.querySelector('#timer');
+				setInterval(function() {
+					timer.innerHTML = Format(new Date(), 'yyyy-MM-dd hh:mm:ss');
+				}, 1);
+			}());
 		</script>
 	</body>
 
